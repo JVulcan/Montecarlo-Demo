@@ -38,7 +38,7 @@ Public Class formMain
         txtResult.Text = "" 'reiniciar
 
         addline("Cantidad de Alternativas: " & result.CantidadAlternativas.ToString())
-        Dim minmax As String = ""
+
         For i = 0 To result.ValoresMinMax.Count - 1
             addline("Mín. Alternativa " & (i + 1).ToString() & ": " & result.ValoresMinMax(i)(0).ToString("F3"))
             addline("Máx. Alternativa " & (i + 1).ToString() & ": " & result.ValoresMinMax(i)(1).ToString("F3"))
