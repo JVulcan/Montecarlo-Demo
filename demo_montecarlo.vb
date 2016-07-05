@@ -97,25 +97,26 @@ Public Class formMain
         'son 3 criterios hijos
         'discretos
         arbol.ValoresPares(0, 1) = 1.0R / 2.0R
-        arbol.ValoresPares(0, 2) = 1.0R
-        arbol.ValoresPares(1, 2) = 1.0R
+        arbol.ValoresPares(0, 2) = 2.0R
+        arbol.ValoresPares(1, 2) = 2.0R
 
-        If (Decimal.Compare(arbol.RatioInconsistencia, 0.1D) > 0) Then
+        Dim ratio As Decimal = arbol.RatioInconsistencia
+        If (Decimal.Compare(ratio, 0.1D) > 0) Then
             MsgBox("es inconsistente")
         End If
 
-        'de riesgo
-        arbol.ValoresParesRiesgo(0, 1, Indice.Triangular_Izquierda) = 1.0R / 3.0R
+        'de riesgo colocar los mismos valores originales para que no varíe
+        arbol.ValoresParesRiesgo(0, 1, Indice.Triangular_Izquierda) = 1.0R / 2.0R
         arbol.ValoresParesRiesgo(0, 1, Indice.Triangular_Centro) = 1.0R / 2.0R
-        arbol.ValoresParesRiesgo(0, 1, Indice.Triangular_Derecha) = 1.0R
+        arbol.ValoresParesRiesgo(0, 1, Indice.Triangular_Derecha) = 1.0R / 2.0R
 
         arbol.ValoresParesRiesgo(0, 2, Indice.Triangular_Izquierda) = 2.0R
         arbol.ValoresParesRiesgo(0, 2, Indice.Triangular_Centro) = 2.0R
-        arbol.ValoresParesRiesgo(0, 2, Indice.Triangular_Derecha) = 1.0R
+        arbol.ValoresParesRiesgo(0, 2, Indice.Triangular_Derecha) = 2.0R
 
-        arbol.ValoresParesRiesgo(1, 2, Indice.Triangular_Izquierda) = 1.0R
-        arbol.ValoresParesRiesgo(1, 2, Indice.Triangular_Centro) = 1.0R
-        arbol.ValoresParesRiesgo(1, 2, Indice.Triangular_Derecha) = 1.0R
+        arbol.ValoresParesRiesgo(1, 2, Indice.Triangular_Izquierda) = 2.0R
+        arbol.ValoresParesRiesgo(1, 2, Indice.Triangular_Centro) = 2.0R
+        arbol.ValoresParesRiesgo(1, 2, Indice.Triangular_Derecha) = 2.0R
 
 
         Dim node As TreeNode2 = Nothing
