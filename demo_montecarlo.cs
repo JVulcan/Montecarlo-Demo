@@ -118,6 +118,11 @@ public class formMain
 		arbol.ValoresPares(0, 1) = 1.0 / 2.0;
 		arbol.ValoresPares(0, 2) = 1.0;
 		arbol.ValoresPares(1, 2) = 1.0;
+
+		if ((decimal.Compare(arbol.RatioInconsistencia, 0.1m) > 0)) {
+			Interaction.MsgBox("es inconsistente");
+		}
+
 		//de riesgo
 		arbol.ValoresParesRiesgo(0, 1, Indice.Triangular_Izquierda) = 1.0 / 3.0;
 		arbol.ValoresParesRiesgo(0, 1, Indice.Triangular_Centro) = 1.0 / 2.0;
