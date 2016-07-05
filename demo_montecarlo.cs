@@ -61,7 +61,6 @@ public class formMain
 		for (i = 0; i <= listPValues.Count - 1; i++) {
 			decimal[] values = result.ValoresP.ValorP(listPValues(i));
 			string formatted = arrayToString(values, "F3");
-			//Dim pval As String = listPValues(i).ToString("P1")
 			addline((listPValues(i) / 100f).ToString("P1") + " : " + formatted);
 		}
 
