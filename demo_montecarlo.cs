@@ -51,7 +51,7 @@ public class formMain
 		//reiniciar
 
 		addline("Cantidad de Alternativas: " + result.CantidadAlternativas.ToString());
-		string minmax = "";
+
 		for (i = 0; i <= result.ValoresMinMax.Count - 1; i++) {
 			addline("Mín. Alternativa " + (i + 1).ToString() + ": " + result.ValoresMinMax(i)(0).ToString("F3"));
 			addline("Máx. Alternativa " + (i + 1).ToString() + ": " + result.ValoresMinMax(i)(1).ToString("F3"));
