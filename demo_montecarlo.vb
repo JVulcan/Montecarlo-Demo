@@ -1,4 +1,4 @@
-﻿Imports Montecarlo
+Imports Montecarlo
 
 Public Class formMain
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -100,6 +100,11 @@ Public Class formMain
         arbol.ValoresPares(0, 1) = 1.0R / 2.0R
         arbol.ValoresPares(0, 2) = 1.0R
         arbol.ValoresPares(1, 2) = 1.0R
+
+        If (Decimal.Compare(arbol.RatioInconsistencia, 0.1D) > 0) Then
+            MsgBox("es inconsistente")
+        End If
+
         'de riesgo
         arbol.ValoresParesRiesgo(0, 1, Indice.Triangular_Izquierda) = 1.0R / 3.0R
         arbol.ValoresParesRiesgo(0, 1, Indice.Triangular_Centro) = 1.0R / 2.0R
