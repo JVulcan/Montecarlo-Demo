@@ -115,25 +115,26 @@ public class formMain
 		//son 3 criterios hijos
 		//discretos
 		arbol.ValoresPares(0, 1) = 1.0 / 2.0;
-		arbol.ValoresPares(0, 2) = 1.0;
-		arbol.ValoresPares(1, 2) = 1.0;
-
-		if ((decimal.Compare(arbol.RatioInconsistencia, 0.1m) > 0)) {
+		arbol.ValoresPares(0, 2) = 2.0;
+		arbol.ValoresPares(1, 2) = 2.0;
+	
+		decimal ratio = arbol.RatioInconsistencia;
+		if ((decimal.Compare(ratio, 0.1m) > 0)) {
 			Interaction.MsgBox("es inconsistente");
 		}
-
-		//de riesgo
-		arbol.ValoresParesRiesgo(0, 1, Indice.Triangular_Izquierda) = 1.0 / 3.0;
+	
+		//de riesgo colocar los mismos valores originales para que no varíe
+		arbol.ValoresParesRiesgo(0, 1, Indice.Triangular_Izquierda) = 1.0 / 2.0;
 		arbol.ValoresParesRiesgo(0, 1, Indice.Triangular_Centro) = 1.0 / 2.0;
-		arbol.ValoresParesRiesgo(0, 1, Indice.Triangular_Derecha) = 1.0;
-
+		arbol.ValoresParesRiesgo(0, 1, Indice.Triangular_Derecha) = 1.0 / 2.0;
+	
 		arbol.ValoresParesRiesgo(0, 2, Indice.Triangular_Izquierda) = 2.0;
 		arbol.ValoresParesRiesgo(0, 2, Indice.Triangular_Centro) = 2.0;
-		arbol.ValoresParesRiesgo(0, 2, Indice.Triangular_Derecha) = 1.0;
-
-		arbol.ValoresParesRiesgo(1, 2, Indice.Triangular_Izquierda) = 1.0;
-		arbol.ValoresParesRiesgo(1, 2, Indice.Triangular_Centro) = 1.0;
-		arbol.ValoresParesRiesgo(1, 2, Indice.Triangular_Derecha) = 1.0;
+		arbol.ValoresParesRiesgo(0, 2, Indice.Triangular_Derecha) = 2.0;
+	
+		arbol.ValoresParesRiesgo(1, 2, Indice.Triangular_Izquierda) = 2.0;
+		arbol.ValoresParesRiesgo(1, 2, Indice.Triangular_Centro) = 2.0;
+		arbol.ValoresParesRiesgo(1, 2, Indice.Triangular_Derecha) = 2.0;
 
 
 		TreeNode2 node = null;
