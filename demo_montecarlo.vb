@@ -48,7 +48,6 @@ Public Class formMain
         For i = 0 To listPValues.Count - 1
             Dim values As Decimal() = result.ValoresP.ValorP(listPValues(i))
             Dim formatted As String = arrayToString(values, "F3")
-            'Dim pval As String = listPValues(i).ToString("P1")
             addline((listPValues(i) / 100.0F).ToString("P1") & " : " & formatted)
         Next
 
