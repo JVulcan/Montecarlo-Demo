@@ -143,6 +143,8 @@ namespace WebServiceMontecarlo
                 return TokenNotFound;
             if (pesos == null || pesos.Count < 2)
                 return "La cantidad de pesos no es válida";
+            if (pesos.Sum() > 1.02 || pesos.Sum() < 0.98)
+                return "Los pesos deberían sumar 100% (1.0)";
             // la cantidad de valores en 'pesos' nos dirá automáticamente
             // cuántos criterios debemos colocar
             TreeNode2 root = createTree(pesos.Count, inst.CantidadAlternativas);
