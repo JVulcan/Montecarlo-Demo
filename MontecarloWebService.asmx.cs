@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -329,7 +329,7 @@ namespace WebServiceMontecarlo
         /// <param name="token">Ticket de la simulación</param>
         /// <returns>true si la simulación terminó, de lo contrario false</returns>
         [WebMethod]
-        public bool EstaTerminado(string token)
+        public bool CheckearTerminado(string token)
         {
             int index = getIndexOf(token);
             if (index == -1)
@@ -348,7 +348,7 @@ namespace WebServiceMontecarlo
         [WebMethod]
         public PSMontecarloResult ObtenerResultado(string token)
         {
-            if (EstaTerminado(token))
+            if (CheckearTerminado(token))
                 return simulaciones[getIndexOf(token)].Resultado;
             else
                 return null;
