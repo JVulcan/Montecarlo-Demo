@@ -143,13 +143,13 @@ namespace WebServiceMontecarlo
                 return TokenNotFound;
             if (pesos == null || pesos.Count < 2)
                 return "La cantidad de pesos no es válida";
-            if (pesos.Sum() > 1.02 || pesos.Sum() < 0.98)
+            if (pesos.Sum() > 1.02 || pesos.Sum() < 0.98) // estoy siendo un poco flexible a la hora de sumar los pesos
                 return "Los pesos deberían sumar 100% (1.0)";
             // la cantidad de valores en 'pesos' nos dirá automáticamente
             // cuántos criterios debemos colocar
             TreeNode2 root = createTree(pesos.Count, inst.CantidadAlternativas);
             root.Tag2 = pesos; // <- guardar pesos para llenarlos después
-            inst.ArbolJerarquico = root;
+            inst.ArbolJerarquico = root; // asignar el árbol a la instancia de PSMontecarlo
             return "ok";
         }
         /// <summary>
@@ -214,14 +214,14 @@ namespace WebServiceMontecarlo
 
                 // ingresar los pesos de cada criterio que habíamos guardado:
                 TreeNode2 arbol = inst.ArbolJerarquico;
-                List<double> pesos = (List<double>)arbol.Tag2; // ver línea 149 de este mismo archivo
+                List<double> pesos = (List<double>)arbol.Tag2; // ver línea 151 de este mismo archivo
                 for (int i = 0; i < pesos.Count; i++)
                 {
                     // valor discreto
-                    arbol.ValoresDirecto[i] = pesos[i];
+                    arbol.ValoresDirecto[i] = pesos[i] * 100.0;
                     // mismo valor para riesgos para que no haya variabilidad
-                    arbol.ValoresDirectoRiesgo[i, (int)Indice.Uniforme_Izquierda] = pesos[i]; // 0
-                    arbol.ValoresDirectoRiesgo[i, (int)Indice.Uniforme_Derecha] = pesos[i]; // 1
+                    arbol.ValoresDirectoRiesgo[i, (int)Indice.Uniforme_Izquierda] = pesos[i] * 100.0; // 0
+                    arbol.ValoresDirectoRiesgo[i, (int)Indice.Uniforme_Derecha] = pesos[i] * 100.0; // 1
                 }
             }
             
@@ -296,9 +296,11 @@ namespace WebServiceMontecarlo
 
             // Como la cantidad de datos en valores coincide con el modo Montecarlo del criterio,
             // se pueden ingresar los valores directamente usando los índices de cada dato en valores.
-            // Obviamente tomando en cuenta que el primero representa el rango izquierdo y el último el rango derecho.
+            // Obviamente tomando en cuenta que el primer dato en 'valores' representa el rango izquierdo y el último el rango derecho.
             for (int i = 0; i < valores.Count; i++)
                 criterio.ValoresDirectoRiesgo[IndiceAlternativa, i] = valores[i] * 100.0;
+                // se supone que los datos de valores vienen como estadística (1.0 es 100%),
+                // pero en ValoresDirecto/ValoresDirectoRiesgo se deben colocar como valores reales (100.0 es 100%)
             
             return "ok";
         }
@@ -410,10 +412,10 @@ namespace WebServiceMontecarlo
         /// <summary>
         /// Genera un árbol
         /// </summary>
-        /// <param name="criteriaNumber">Número de criterios de la simulación</param>
+        /// <param name="criteriaCount">Número de criterios de la simulación</param>
         /// <param name="alternativeCount">Cantidad de Alternativas (Productos) de la simulación</param>
         /// <returns></returns>
-        internal TreeNode2 createTree(int criteriaNumber, int alternativeCount)
+        internal TreeNode2 createTree(int criteriaCount, int alternativeCount)
         {
             try
             {
@@ -422,10 +424,10 @@ namespace WebServiceMontecarlo
                 // cálculo de los pesos en modo Pares ya fue hecho en SharePoint.
                 // Da igual el modo montecarlo de este nodo.
                 TreeNode2 root = new TreeNode2(alternativeCount, ModoMontecarlo.Uniforme, TipoCriterio.Directo);
-                for (int i = 0; i < criteriaNumber; i++)
+                for (int i = 0; i < criteriaCount; i++)
                 {
                     // los hijos también serán en modo Directo;
-                    // Nota: es obligatorio si se usa 1 sola Alternativa
+                    // Nota: es obligatorio si se usa 1 sola Alternativa; el modo Pares soporta mínimo 2.
                     TreeNode2 child = new TreeNode2(alternativeCount, ModoMontecarlo.Indefinido, TipoCriterio.Directo);
                     
                     child.Padre = root; // <-- de esta manera se deben agregar los hijos al árbol
