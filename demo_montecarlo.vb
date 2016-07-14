@@ -90,7 +90,7 @@ Public Class formMain
             'crear nuevo nodo, 1 alternativa, modo triangular y tipo directo
             Dim t As New TreeNode2(1, ModoMontecarlo.Triangular, TipoCriterio.Directo)
             'añadir nuevo criterio al árbol
-            arbol.Nodes.Add(t)
+            t.Padre = arbol
         Next
 
         arbol.PrepararArbol(True)
@@ -121,7 +121,7 @@ Public Class formMain
 
         Dim node As TreeNode2 = Nothing
 
-        node = arbol.Nodes(0)
+        node = arbol.Nodos(0)
         'discretos
         node.ValoresDirecto(0) = 88.0R
         'de riesgo
@@ -129,7 +129,7 @@ Public Class formMain
         node.ValoresDirectoRiesgo(0, Indice.Triangular_Centro) = 89.0R
         node.ValoresDirectoRiesgo(0, Indice.Triangular_Derecha) = 93.0R
 
-        node = arbol.Nodes(1)
+        node = arbol.Nodos(1)
         'discretos
         node.ValoresDirecto(0) = 42.0R
         'de riesgo
@@ -137,7 +137,7 @@ Public Class formMain
         node.ValoresDirectoRiesgo(0, Indice.Triangular_Centro) = 43.0R
         node.ValoresDirectoRiesgo(0, Indice.Triangular_Derecha) = 45.0R
 
-        node = arbol.Nodes(2)
+        node = arbol.Nodos(2)
         'discretos
         node.ValoresDirecto(0) = 63.5R
         'de riesgo
