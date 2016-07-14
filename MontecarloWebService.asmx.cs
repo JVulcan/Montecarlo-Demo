@@ -143,6 +143,7 @@ namespace WebServiceMontecarlo
                 return TokenNotFound;
             if (pesos == null || pesos.Count < 2)
                 return "La cantidad de pesos no es válida";
+            // los pesos de los criterios deben sumar 100%, no así los pesos de cada Alternativa (esos pueden tener cualquier valor)
             if (pesos.Sum() > 1.02 || pesos.Sum() < 0.98) // estoy siendo un poco flexible a la hora de sumar los pesos
                 return "Los pesos deberían sumar 100% (1.0)";
             // la cantidad de valores en 'pesos' nos dirá automáticamente
