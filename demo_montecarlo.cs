@@ -108,7 +108,7 @@ public class formMain
 			//crear nuevo nodo, 1 alternativa, modo triangular y tipo directo
 			TreeNode2 t = new TreeNode2(1, ModoMontecarlo.Triangular, TipoCriterio.Directo);
 			//añadir nuevo criterio al árbol
-			arbol.Nodes.Add(t);
+			t.Padre = arbol;
 		}
 
 		arbol.PrepararArbol(true);
@@ -139,7 +139,7 @@ public class formMain
 
 		TreeNode2 node = null;
 
-		node = arbol.Nodes(0);
+		node = arbol.Nodos(0);
 		//discretos
 		node.ValoresDirecto(0) = 88.0;
 		//de riesgo
@@ -147,7 +147,7 @@ public class formMain
 		node.ValoresDirectoRiesgo(0, Indice.Triangular_Centro) = 89.0;
 		node.ValoresDirectoRiesgo(0, Indice.Triangular_Derecha) = 93.0;
 
-		node = arbol.Nodes(1);
+		node = arbol.Nodos(1);
 		//discretos
 		node.ValoresDirecto(0) = 42.0;
 		//de riesgo
@@ -155,7 +155,7 @@ public class formMain
 		node.ValoresDirectoRiesgo(0, Indice.Triangular_Centro) = 43.0;
 		node.ValoresDirectoRiesgo(0, Indice.Triangular_Derecha) = 45.0;
 
-		node = arbol.Nodes(2);
+		node = arbol.Nodos(2);
 		//discretos
 		node.ValoresDirecto(0) = 63.5;
 		//de riesgo
